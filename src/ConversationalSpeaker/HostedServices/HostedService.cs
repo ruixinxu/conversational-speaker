@@ -51,30 +51,30 @@ namespace ConversationalSpeaker
             _semanticKernel = semanticKernel;
 
             // OpenAI
-            _chatRequestSettings = new ChatRequestSettings()
-            {
-                MaxTokens = openAIOptions.Value.MaxTokens,
-                Temperature = openAIOptions.Value.Temperature,
-                FrequencyPenalty = openAIOptions.Value.FrequencyPenalty,
-                PresencePenalty = openAIOptions.Value.PresencePenalty,
-                TopP = openAIOptions.Value.TopP,
-                StopSequences = new string[] { "\n\n" }
-            };
-            _semanticKernel.Config.AddOpenAIChatCompletionService(
-                openAIOptions.Value.Model, openAIOptions.Value.Key, alsoAsTextCompletion: true, logger: _logger);
+            // _chatRequestSettings = new ChatRequestSettings()
+            // {
+            //     MaxTokens = openAIOptions.Value.MaxTokens,
+            //     Temperature = openAIOptions.Value.Temperature,
+            //     FrequencyPenalty = openAIOptions.Value.FrequencyPenalty,
+            //     PresencePenalty = openAIOptions.Value.PresencePenalty,
+            //     TopP = openAIOptions.Value.TopP,
+            //     StopSequences = new string[] { "\n\n" }
+            // };
+            // _semanticKernel.Config.AddOpenAIChatCompletionService(
+            //     openAIOptions.Value.Model, openAIOptions.Value.Key, alsoAsTextCompletion: true, logger: _logger);
 
             // Azure OpenAI
-            //_chatRequestSettings = new ChatRequestSettings()
-            //{
-            //    MaxTokens = azureOpenAIOptions.Value.MaxTokens,
-            //    Temperature = azureOpenAIOptions.Value.Temperature,
-            //    FrequencyPenalty = azureOpenAIOptions.Value.FrequencyPenalty,
-            //    PresencePenalty = azureOpenAIOptions.Value.PresencePenalty,
-            //    TopP = azureOpenAIOptions.Value.TopP,
-            //    StopSequences = new string[] { "\n\n" }
-            //};
-            //_semanticKernel.Config.AddAzureChatCompletionService(
-            //    azureOpenAIOptions.Value.Deployment, azureOpenAIOptions.Value.Endpoint, azureOpenAIOptions.Value.Key, alsoAsTextCompletion: true, logger: _logger);
+            _chatRequestSettings = new ChatRequestSettings()
+            {
+               MaxTokens = azureOpenAIOptions.Value.MaxTokens,
+               Temperature = azureOpenAIOptions.Value.Temperature,
+               FrequencyPenalty = azureOpenAIOptions.Value.FrequencyPenalty,
+               PresencePenalty = azureOpenAIOptions.Value.PresencePenalty,
+               TopP = azureOpenAIOptions.Value.TopP,
+               StopSequences = new string[] { "\n\n" }
+            };
+            _semanticKernel.Config.AddAzureChatCompletionService(
+               azureOpenAIOptions.Value.Deployment, azureOpenAIOptions.Value.Endpoint, azureOpenAIOptions.Value.Key, alsoAsTextCompletion: true, logger: _logger);
 
             _wakeWordListener = wakeWordListener;
 
@@ -115,7 +115,7 @@ namespace ConversationalSpeaker
                 await _player.Play(_notificationSoundFilePath);
 
                 // Say hello on startup
-                await _semanticKernel.RunAsync("Hello!", _speechSkill["Speak"]);
+                await _semanticKernel.RunAsync("你好呀，我是小派，有何吩咐？", _speechSkill["Speak"]);
 
                 // Start listening
                 while (!cancellationToken.IsCancellationRequested)
@@ -144,7 +144,7 @@ namespace ConversationalSpeaker
                     await _semanticKernel.RunAsync(reply, _speechSkill["Speak"]);
 
                     // If the user said "Goodbye" - stop listening and wait for the wake work again.
-                    if (userSpoke.StartsWith("goodbye", StringComparison.InvariantCultureIgnoreCase))
+                    if (userSpoke.StartsWith("再见", StringComparison.InvariantCultureIgnoreCase))
                     {
                         break;
                     }
