@@ -18,7 +18,9 @@
     // "SpeechRecognitionLanguage": "zh-CN-shandong",
     // "SpeechSynthesisVoiceName": "zh-CN-shandong-YunxiangNeural", // For a list of available voices, see https://aka.ms/maker/friendbot/voicenames
     "SpeechRecognitionLanguage": "zh-CN",
-    "SpeechSynthesisVoiceName": "zh-CN-XiaoyouNeural", // For a list of available voices, see https://aka.ms/maker/friendbot/voicenames
+    //"SpeechSynthesisVoiceName": "zh-CN-XiaoyouNeural", // For a list of available voices, see https://aka.ms/maker/friendbot/voicenames
+    "EndpointId":"927fa912-32ed-4de2-abf2-c2dad8322edb",
+    "SpeechSynthesisVoiceName":"ruxu-voice-chn-26samplesNeural",
     "EnableSpeechStyle": "false", // TODO: not supported yet after the migration to ChatGPT.
     "Rate": "+15%", // https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/speech-synthesis-markup-voice#adjust-prosody
     "WakePhraseModel": "hi-xiaopai.table"
@@ -36,7 +38,7 @@
 
   "AzureOpenAI": {
     "Key": "", // dotnet user-secrets set "AzureOpenAI:Key" "****"
-    "Endpoint": "",
+    "Endpoint": "https://openairuxu.openai.azure.com/",
     "Deployment": "gpt-35-turbo", // For a list of available models, see https://beta.openai.com/docs/models/overview
     "MaxTokens": 1500,
     "Temperature": 0.7, // 0.0 - 1.0

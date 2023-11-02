@@ -36,6 +36,7 @@ namespace ConversationalSpeaker
 
             SpeechConfig speechConfig = SpeechConfig.FromSubscription(_options.Key, _options.Region);
             speechConfig.SpeechRecognitionLanguage = _options.SpeechRecognitionLanguage;
+            speechConfig.EndpointId = "927fa912-32ed-4de2-abf2-c2dad8322edb";
             speechConfig.SetProperty(PropertyId.SpeechServiceResponse_PostProcessingOption, "TrueText");
             speechConfig.SpeechSynthesisVoiceName = _options.SpeechSynthesisVoiceName;
 
